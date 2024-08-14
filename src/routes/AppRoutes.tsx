@@ -1,9 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Home } from "../pages/Home";
+import { DefaultLayout } from "../config/layout/DefaultLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Bora codar</h1>,
+    element: (
+      <DefaultLayout>
+        <Home />
+      </DefaultLayout>
+    ),
   },
 ]);
 
