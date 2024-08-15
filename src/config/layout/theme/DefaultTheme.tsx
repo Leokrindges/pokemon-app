@@ -21,10 +21,10 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: "#604500ae", 
+          backgroundColor: "#604500ae",
           color: "#FFFFFF",
-          fontWeight:'bolder' ,
-          '&:hover': {
+          fontWeight: "bolder",
+          "&:hover": {
             backgroundColor: "#ba7103bc",
           },
         },
