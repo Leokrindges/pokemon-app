@@ -17,6 +17,7 @@ export const pokemonSlice = createSlice({
     },
   }),
   reducers: {
+    pokemonAdd: pokemonAdapter.addOne,
   },
   extraReducers(builder) {
     builder.addCase(fetchAllPokemons.fulfilled, (currentState, action) => {
