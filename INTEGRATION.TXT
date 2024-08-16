@@ -1,0 +1,27 @@
+CADA PERSONAGEM DEVE TER -> 
+pokemon {
+    id: number;
+    name: string;
+    size: string;
+    image: string;
+    habilitis:[
+        {
+            habilitiName: string;
+        }
+    ];
+    stats:[
+        {
+            strength: number;
+            statName: string;
+            effort: number;
+            urlStat: string;
+            typeStats: string; -> /stat/3/
+        }
+    ],
+}
+
+para buscar mais detalhes de um stat -> /stat/3/
+
+RESPONSE API - GET
+https://pokeapi.co/api/v2/pokemon/
+
