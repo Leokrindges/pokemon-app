@@ -40,6 +40,7 @@ export async function getAllPokemonsServices(
         image: resultDetail.data.sprites.other.dream_world.front_default,
         habilitis: habilities,
         stats: stats,
+        isFavorite: false,
       });
     }
 

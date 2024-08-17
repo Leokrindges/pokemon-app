@@ -7,6 +7,7 @@ export interface Pokemon {
   name: string;
   size: string;
   image: string;
+  isFavorite: boolean;
   habilitis: [
     {
       habilitiName: string;

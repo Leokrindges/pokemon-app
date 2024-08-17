@@ -16,15 +16,21 @@ import { useEffect, useState } from "react";
 import { fetchAllPokemons } from "../store/modules/pokemons/pokemons.action";
 import favorite from "../assets/images/favorite.svg";
 import favoriteSelected from "../assets/images/favoriteSelected.svg";
+import { Pokemon } from "../config/interfaces/pokemon.interface";
+import {
+  addPokemon,
+  listPokedex,
+  removePokemon,
+} from "../store/modules/pokedex/pokedex.slice";
 
 export function Home() {
   const [page, setPage] = useState(0);
   const [buttonPagination, setButoonPagination] = useState(1);
-  const [favoritePokedex, setFavoritePokekex] = useState<number[]>([]);
   const pokemons = useAppSelector((state) => listPokemons(state.pokemons));
+  const pokedex = useAppSelector((state) => listPokedex(state.pokedex));
+
   const pagination = useAppSelector((state) => state.pokemons.pagination);
   const dispatch = useAppDispatch();
-  console.log(pagination);
 
   useEffect(() => {
     dispatch(fetchAllPokemons({ page: page, limit: 20 }));
@@ -39,14 +45,14 @@ export function Home() {
     });
   };
 
-  const handleFavorite = (pokemonId: number) => {
-    setFavoritePokekex((favorite) => {
-      if (favorite.includes(pokemonId)) {
-        return favorite.filter((id) => id !== pokemonId);
-      } else {
-        return [...favorite, pokemonId];
-      }
-    });
+  const handleFavorite = (pokemon: Pokemon) => {
+    const isFavorite = pokedex.some((a) => a.id === pokemon.id);
+
+    if (isFavorite) {
+      dispatch(removePokemon(pokemon.id));
+    } else {
+      dispatch(addPokemon(pokemon));
+    }
   };
 
   return (
@@ -95,9 +101,9 @@ export function Home() {
                     </CardContent>
                   </CardActionArea>
                   <img
-                    onClick={() => handleFavorite(pokemon.id)}
+                    onClick={() => handleFavorite(pokemon)}
                     src={
-                      favoritePokedex.includes(pokemon.id)
+                      pokedex.some((a) => a.id == pokemon.id)
                         ? favoriteSelected
                         : favorite
                     }
