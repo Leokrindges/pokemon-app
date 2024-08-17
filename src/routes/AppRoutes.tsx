@@ -1,13 +1,31 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { DefaultLayout } from "../config/layout/DefaultLayout";
+import { Pokedex } from "../pages/Pokedex";
+import { Pokemon } from "../pages/Pokemon";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/pokemon",
     element: (
       <DefaultLayout>
         <Home />
+      </DefaultLayout>
+    ),
+  },
+  {
+    path: "/pokedex",
+    element: (
+      <DefaultLayout>
+        <Pokedex />
+      </DefaultLayout>
+    ),
+  },
+  {
+    path: "/pokemon/:pokemonId",
+    element: (
+      <DefaultLayout>
+        <Pokemon />
       </DefaultLayout>
     ),
   },

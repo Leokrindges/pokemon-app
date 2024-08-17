@@ -14,23 +14,16 @@ import { listPokemons } from "../store/modules/pokemons/pokemonsSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect, useState } from "react";
 import { fetchAllPokemons } from "../store/modules/pokemons/pokemons.action";
-import favorite from "../assets/images/favorite.svg";
-import favoriteSelected from "../assets/images/favoriteSelected.svg";
-import { Pokemon } from "../config/interfaces/pokemon.interface";
-import {
-  addPokemon,
-  listPokedex,
-  removePokemon,
-} from "../store/modules/pokedex/pokedex.slice";
+import { useNavigate } from "react-router-dom";
+import { IconFavorite } from "../components/functional/IconFavorite";
 
 export function Home() {
   const [page, setPage] = useState(0);
   const [buttonPagination, setButoonPagination] = useState(1);
   const pokemons = useAppSelector((state) => listPokemons(state.pokemons));
-  const pokedex = useAppSelector((state) => listPokedex(state.pokedex));
-
   const pagination = useAppSelector((state) => state.pokemons.pagination);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchAllPokemons({ page: page, limit: 20 }));
@@ -43,16 +36,6 @@ export function Home() {
       top: 0,
       behavior: "smooth",
     });
-  };
-
-  const handleFavorite = (pokemon: Pokemon) => {
-    const isFavorite = pokedex.some((a) => a.id === pokemon.id);
-
-    if (isFavorite) {
-      dispatch(removePokemon(pokemon.id));
-    } else {
-      dispatch(addPokemon(pokemon));
-    }
   };
 
   return (
@@ -83,7 +66,9 @@ export function Home() {
             {pokemons.map((pokemon) => (
               <Grid item sm={6} md={4} lg={3} key={pokemon.id} width={"18rem"}>
                 <Card sx={{ minWidth: "80%" }}>
-                  <CardActionArea>
+                  <CardActionArea
+                    onClick={() => navigate(`${pokemon.id}`)}
+                  >
                     <CardMedia
                       component="img"
                       height="140"
@@ -100,20 +85,7 @@ export function Home() {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                  <img
-                    onClick={() => handleFavorite(pokemon)}
-                    src={
-                      pokedex.some((a) => a.id == pokemon.id)
-                        ? favoriteSelected
-                        : favorite
-                    }
-                    alt="favorite icon"
-                    style={{
-                      marginLeft: "1rem",
-                      marginBottom: "0.3rem",
-                      cursor: "pointer",
-                    }}
-                  />
+                  <IconFavorite pokemon={pokemon} />
                 </Card>
               </Grid>
             ))}
