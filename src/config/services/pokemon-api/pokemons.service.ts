@@ -36,7 +36,8 @@ export async function getAllPokemonsServices(
       pokemons.push({
         id: resultDetail.data.id,
         name: resultDetail.data.name,
-        size: resultDetail.data.weight,
+        size: Number(resultDetail.data.weight),
+        height: Number(resultDetail.data.height),
         image: resultDetail.data.sprites.other.dream_world.front_default,
         habilitis: habilities,
         stats: stats,

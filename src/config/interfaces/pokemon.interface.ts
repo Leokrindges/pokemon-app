@@ -5,7 +5,8 @@ export interface DataPokemon {
 export interface Pokemon {
   id: number;
   name: string;
-  size: string;
+  size: number
+  height: number;
   image: string;
   isFavorite: boolean;
   habilitis: [

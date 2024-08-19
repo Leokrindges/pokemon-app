@@ -66,9 +66,14 @@ export function Home() {
             {pokemons.map((pokemon) => (
               <Grid item sm={6} md={4} lg={3} key={pokemon.id} width={"18rem"}>
                 <Card sx={{ minWidth: "80%" }}>
-                  <CardActionArea
-                    onClick={() => navigate(`${pokemon.id}`)}
+                  <Typography
+                    fontSize={"1.1rem"}
+                    position={"absolute"}
+                    ml={"0.2rem"}
                   >
+                    #{pokemon.id}
+                  </Typography>
+                  <CardActionArea onClick={() => navigate(`${pokemon.id}`)}>
                     <CardMedia
                       component="img"
                       height="140"
@@ -77,11 +82,17 @@ export function Home() {
                       alt={pokemon.name}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        Name: {pokemon.name}
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                        textAlign={"center"}
+                        fontWeight={"bolder"}
+                      >
+                        {pokemon.name}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Size: {pokemon.size}
+                        Size: {pokemon.size} KG
                       </Typography>
                     </CardContent>
                   </CardActionArea>

@@ -64,11 +64,11 @@ export function Pokedex() {
                         alt={pokemon.name}
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          Name: {pokemon.name}
+                        <Typography gutterBottom variant="h5" component="div" textAlign={'center'} fontWeight={'bolder'}>
+                          {pokemon.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          Size: {pokemon.size}
+                          Size: {pokemon.size} KG
                         </Typography>
                       </CardContent>
                     </CardActionArea>
