@@ -12,26 +12,28 @@ import {
 } from "@mui/material/";
 import { listPokemons } from "../store/modules/pokemons/pokemonsSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchAllPokemons } from "../store/modules/pokemons/pokemons.action";
 import { useNavigate } from "react-router-dom";
 import { IconFavorite } from "../components/functional/IconFavorite";
+import { setLastVisitedPage, setNumberPage } from "../store/modules/navigation/navigation.slice";
 
 export function Home() {
-  const [page, setPage] = useState(0);
-  const [buttonPagination, setButoonPagination] = useState(1);
   const pokemons = useAppSelector((state) => listPokemons(state.pokemons));
   const pagination = useAppSelector((state) => state.pokemons.pagination);
+  const navigation = useAppSelector(
+    (state) => state.navigation
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchAllPokemons({ page: page, limit: 20 }));
-  }, [page]);
+    dispatch(fetchAllPokemons({ page: navigation.lastVisitedPage, limit: 20 }));
+  }, [navigation]);
 
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage((value - 1) * pagination.limit);
-    setButoonPagination(value);
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    dispatch(setLastVisitedPage((value - 1) * pagination.limit));
+    dispatch(setNumberPage(value))
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -105,7 +107,7 @@ export function Home() {
         <Pagination
           onChange={handleChange}
           count={pagination.totalPages}
-          page={buttonPagination}
+          page={navigation.lastNumberPage}
           color="primary"
           sx={{ mt: "1.5rem" }}
         />

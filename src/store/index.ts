@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { pokemonSlice } from "./modules/pokemons/pokemonsSlice";
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { rootReducer } from "./modules/rootReducer";
@@ -7,18 +6,14 @@ import { rootReducer } from "./modules/rootReducer";
 const persistedReducer = persistReducer(
   {
     key: "app-store",
-    storage: storage, // defaults to localStorage for web
-    whitelist: ["pokedex"],
+    storage: storage, 
+    whitelist: ["pokedex",],
   },
   rootReducer
 );
 
-// export const store = configureStore({
-//   reducer: { pokemons: pokemonSlice.reducer, pokedex: pokedexSlice.reducer },
-// });
-
 export const store = configureStore({
-  reducer: { pokemons: pokemonSlice.reducer, persistedReducer },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

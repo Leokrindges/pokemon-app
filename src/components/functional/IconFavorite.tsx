@@ -14,7 +14,7 @@ interface IconFavoriteProps {
 }
 
 export function IconFavorite(props: IconFavoriteProps) {
-  const pokedex = useAppSelector((state) => listPokedex(state.persistedReducer.pokedex));
+  const pokedex = useAppSelector((state) => listPokedex(state.pokedex));
 
   const dispatch = useDispatch();
   const handleFavorite = (pokemonSelected: Pokemon) => {

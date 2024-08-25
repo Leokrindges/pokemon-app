@@ -9,12 +9,14 @@ export async function getAllPokemonsServices(
 ): Promise<ResponseAPI<Array<Pokemon>>> {
   try {
     const pokemons: Pokemon[] = [];
+
     const response = await pokemonApi.get(`/pokemon/`, {
       params: {
         offset: page,
         limit: limit,
       },
     });
+    console.log(response);
 
     for (const pokemon of response.data.results) {
       const resultDetail = await axios.get(pokemon.url);

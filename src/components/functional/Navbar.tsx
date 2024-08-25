@@ -4,22 +4,51 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { fetchAllPokemons } from "../../store/modules/pokemons/pokemons.action";
+import { setLastVisitedPage, setNumberPage } from "../../store/modules/navigation/navigation.slice";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const lastVisitedPage = useAppSelector(
+    (state) => state.navigation.lastVisitedPage
+  );
+
+  const handlePokemonClick = () => {
+    dispatch(setLastVisitedPage(0));
+    dispatch(setNumberPage(1));
+    dispatch(fetchAllPokemons({ page: 0, limit: 20 }));
+    navigate("/pokemon");
+  };
+
+  const handleVoltarClick = () => {
+    dispatch(fetchAllPokemons({ page: lastVisitedPage || 0, limit: 20 }));
+    navigate("/pokemon");
+  };
 
   return (
     <Box sx={{ flexGrow: 3 }}>
       <AppBar position="fixed">
         <Toolbar>
           <Typography
-            onClick={() => navigate("/pokemon")}
+            onClick={handlePokemonClick}
             variant="h6"
             component="div"
             sx={{ flexGrow: 1, fontWeight: "bold", cursor: "pointer" }}
           >
             POKEMON
           </Typography>
+          {location.pathname !== "/pokemon" && (
+            <Button
+              onClick={handleVoltarClick}
+              color="inherit"
+              sx={{ mr: "1rem" }}
+            >
+              Voltar
+            </Button>
+          )}
           <Button onClick={() => navigate("/pokedex")} color="inherit">
             Pokedex
           </Button>

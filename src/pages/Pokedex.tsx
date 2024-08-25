@@ -16,7 +16,7 @@ import { listPokedex } from "../store/modules/pokedex/pokedex.slice";
 import { useNavigate } from "react-router-dom";
 
 export function Pokedex() {
-  const pokedex = useAppSelector((state) => listPokedex(state.persistedReducer.pokedex));
+  const pokedex = useAppSelector((state) => listPokedex(state.pokedex));
   const navigate = useNavigate();
 
   return (
