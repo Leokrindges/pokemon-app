@@ -74,7 +74,7 @@ export function Pokemon() {
                   >
                     <Grid item sm={6} justifyContent={"center"}>
                       <Typography textAlign={"center"} fontSize={"1.7rem"}>
-                        {pokemon.size} Kg <br></br>{" "}
+                        {pokemon.size} Hectograms <br></br>{" "}
                         <span style={{ fontSize: "1.2rem", color: "#C4820C" }}>
                           Weight
                         </span>
@@ -82,7 +82,7 @@ export function Pokemon() {
                     </Grid>
                     <Grid item sm={6} justifyContent={"center"}>
                       <Typography textAlign={"center"} fontSize={"1.7rem"}>
-                        {pokemon.height} m <br></br>{" "}
+                        {pokemon.height} Decimetres <br></br>{" "}
                         <span style={{ fontSize: "1.2rem", color: "#C4820C" }}>
                           Height
                         </span>

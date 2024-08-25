@@ -68,7 +68,7 @@ export function Pokedex() {
                           {pokemon.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          Size: {pokemon.size} KG
+                          Size: {pokemon.size} Hectograms
                         </Typography>
                       </CardContent>
                     </CardActionArea>
