@@ -20,12 +20,12 @@ export default function Navbar() {
     dispatch(setLastVisitedPage(0));
     dispatch(setNumberPage(1));
     dispatch(fetchAllPokemons({ page: 0, limit: 20 }));
-    navigate("/pokemon");
+    navigate("/");
   };
 
   const handleVoltarClick = () => {
     dispatch(fetchAllPokemons({ page: lastVisitedPage || 0, limit: 20 }));
-    navigate("/pokemon");
+    navigate("/");
   };
 
   return (
@@ -40,7 +40,7 @@ export default function Navbar() {
           >
             POKEMON
           </Typography>
-          {location.pathname !== "/pokemon" && (
+          {location.pathname !== "/" && (
             <Button
               onClick={handleVoltarClick}
               color="inherit"

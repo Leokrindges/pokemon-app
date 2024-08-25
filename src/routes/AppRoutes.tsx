@@ -6,7 +6,7 @@ import { Pokemon } from "../pages/Pokemon";
 
 const router = createBrowserRouter([
   {
-    path: "/pokemon",
+    path: "/",
     element: (
       <DefaultLayout>
         <Home />
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/pokemon/:pokemonId",
+    path: "/:pokemonId",
     element: (
       <DefaultLayout>
         <Pokemon />

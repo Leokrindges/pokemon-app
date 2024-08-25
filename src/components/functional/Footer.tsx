@@ -8,7 +8,7 @@ export function Footer() {
         color={"GrayText"}
         textAlign="center"
         marginTop={5}
-        fontSize={25}
+        fontSize={20}
       >
         Copyright &copy;&nbsp; &nbsp;Leonardo Krindges{" "}
         {new Date().getFullYear()}.
